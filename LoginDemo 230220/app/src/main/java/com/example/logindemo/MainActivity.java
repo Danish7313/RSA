@@ -105,19 +105,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void checkEmailVerification(){
+    private void checkEmailVerification() {
         FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
 
         startActivity(new Intent(MainActivity.this, SecondActivity.class));
-        
-        //if(emailflag){
-        //    finish();
-        //    startActivity(new Intent(MainActivity.this, SecondActivity.class));
-        //}else{
-        //    Toast.makeText(this, "Verify your email", Toast.LENGTH_SHORT).show();
-        //    firebaseAuth.signOut();
-        // }
-    }
 
+//        if(emailflag){
+//            finish();
+//            startActivity(new Intent(MainActivity.this, SecondActivity.class));
+//        }else{
+//            Toast.makeText(this, "Verify your email", Toast.LENGTH_SHORT).show();
+//            firebaseAuth.signOut();
+//         }
+//    }
+    }
 }

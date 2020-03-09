@@ -35,7 +35,7 @@ public class UpdateProfile extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         final DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
