@@ -49,11 +49,11 @@
 
     <TextView
         android:id="@+id/tvProfileEmail"
-        android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_width="338dp"
+        android:layout_height="39dp"
         android:text="Email :"
         android:textColor="#FFFFFF"
-        android:textSize="28dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.247"
