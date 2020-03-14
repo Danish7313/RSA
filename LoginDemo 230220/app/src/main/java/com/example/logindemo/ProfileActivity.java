@@ -57,13 +57,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        profilePic = findViewById(R.id.ivProfilePic);
+        profilePic = findViewById(R.id.imageView2);
         profileName = findViewById(R.id.tvProfileName);
         profileAge = findViewById(R.id.tvProfileAge);
         profileEmail = findViewById(R.id.tvProfileEmail);
@@ -76,12 +75,11 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
-        final DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        final DatabaseReference databaseReference = firebaseDatabase.getReference("UserInfo").child(firebaseAuth.getUid());
 
         storageReference = firebaseStorage.getReference();
 
-        StorageReference mImageRef = FirebaseStorage.getInstance().getReference(firebaseAuth.getUid()).child("Profile Pic");
-        //StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
+        StorageReference mImageRef = FirebaseStorage.getInstance().getReference().child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
         final long ONE_MEGABYTE = 1024 * 1024;
 
         mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -105,29 +103,28 @@ public class ProfileActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                profileName.setText("Name: " + userProfile.getUserName());
-                profileAge.setText("Age:" + userProfile.getUserAge());
-                profileEmail.setText("Email: " + userProfile.getUserEmail());
+                UserProfile classUserProfile = dataSnapshot.getValue(UserProfile.class);
+                profileName.setText("Name: " + classUserProfile.getUserName());
+                profileAge.setText("Age: " + classUserProfile.getUserAge());
+                profileEmail.setText("Email: " + classUserProfile.getUserEmail());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(ProfileActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
-
             }
         });
 
-        profileUpdate.setOnClickListener(new View.OnClickListener(){
+        profileUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, UpdateProfile.class));
             }
         });
 
-        changePassword.setOnClickListener(new View.OnClickListener(){
+        changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, UpdatePassword.class));
             }
         });

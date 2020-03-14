@@ -34,7 +34,7 @@ import java.io.IOException;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText userName, userPassword, userEmail,userAge;
+    private EditText userName, userPassword, userEmail, userAge;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
@@ -44,7 +44,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private static int PICK_IMAGE = 123;
     Uri imagePath;
     private StorageReference storageReference;
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -68,27 +67,22 @@ public class RegistrationActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
-
         storageReference = firebaseStorage.getReference();
-
 
         userProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setType("image/*");//application/*  audio/*
+                intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select image"), PICK_IMAGE);
             }
         });
 
-
-
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if(validate()){
-                    //Upload data to the database
                     String user_email = userEmail.getText().toString().trim();
                     String user_password = userPassword.getText().toString().trim();
 
@@ -96,58 +90,61 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if (task.isSuccessful()) {
-                                //sendEmailVerification();
-                                sendUserData();
-                                firebaseAuth.signOut();
-                                Toast.makeText(RegistrationActivity.this, "Successfully Registered, Upload complete!", Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
-                            } else {
+                            if(task.isSuccessful()){
+                                sendEmailVerification();
+                                //sendUserData();
+                                //firebaseAuth.signOut();
+                                //Toast.makeText(ActivityRegistration.this, "Successfully Registered, Upload complete!", Toast.LENGTH_SHORT).show();
+                                //finish();
+                                //startActivity(new Intent(ActivityRegistration.this, ActivityLogin.class));
+                            }else{
                                 Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
-                        }
 
+                        }
                     });
                 }
             }
         });
 
-            userLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+        userLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+            }
+        });
+    }
 
-                }
-            });
-    }
     private void setupUIViews(){
-        userName = (EditText)findViewById(R.id.etUserName);
-        userPassword = (EditText)findViewById(R.id.etUserPassword);
-        userEmail = (EditText)findViewById(R.id.etUserEmail);
-        regButton = (Button)findViewById(R.id.btnRegister);
-        userLogin = (TextView)findViewById(R.id.tvUserLogin);
-        userAge = (EditText)findViewById(R.id.etAge);
-        userProfilePic = (ImageView)findViewById(R.id.ivProfilePic);
+        userName = findViewById(R.id.etUserName);
+        userPassword = findViewById(R.id.etUserPassword);
+        userEmail = findViewById(R.id.etUserEmail);
+        regButton = findViewById(R.id.btnRegister);
+        userLogin = findViewById(R.id.tvUserLogin);
+        userAge = findViewById(R.id.etAge);
+        userProfilePic = findViewById(R.id.ivProfilePic);
     }
+
     private Boolean validate(){
         Boolean result = false;
 
-        name = userName.getText().toString().trim();
-        password = userPassword.getText().toString().trim();
-        email = userEmail.getText().toString().trim();
-        age = userAge.getText().toString().trim();
+        name = userName.getText().toString();
+        password = userPassword.getText().toString();
+        email = userEmail.getText().toString();
+        age = userAge.getText().toString();
 
         if(name.isEmpty() || password.isEmpty() || email.isEmpty() || age.isEmpty() || imagePath == null){
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT). show();
         }else{
             result = true;
         }
-            return result;
+
+        return result;
     }
 
     private void sendEmailVerification(){
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         if(firebaseUser != null){
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -168,8 +165,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");  //User Id/Images/profile_pic.png
+        DatabaseReference myRef = firebaseDatabase.getReference("UserInfo").child(firebaseAuth.getUid());
+        StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
         UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -182,7 +179,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 Toast.makeText(RegistrationActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
             }
         });
-        UserProfile userProfile = new UserProfile(age, email, name);
-        myRef.setValue(userProfile);
+        UserProfile UserProfile = new UserProfile(age, email, name);
+        myRef.setValue(UserProfile);
     }
 }
