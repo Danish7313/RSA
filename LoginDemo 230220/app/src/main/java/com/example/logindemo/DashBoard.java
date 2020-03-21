@@ -24,9 +24,11 @@ public class DashBoard extends AppCompatActivity {
     EditText editText2;
 
     String [] car = {
-            "Waja",
-            "saga",
-            "mercedes",
+            "Axia",
+            "Saga",
+            "Civic",
+            "toyota",
+            "Ferrari",
             "Myvi",
 
     };
