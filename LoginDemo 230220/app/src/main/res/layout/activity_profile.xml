@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.094"
-        app:srcCompat="@drawable/logobaru" />
+        app:srcCompat="@drawable/logooren" />
 
     <TextView
         android:id="@+id/tvProfileName"
@@ -49,17 +49,17 @@
 
     <TextView
         android:id="@+id/tvProfileEmail"
-        android:layout_width="338dp"
-        android:layout_height="39dp"
+        android:layout_width="306dp"
+        android:layout_height="44dp"
         android:text="Email :"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileAge"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.097" />
 
     <Button
         android:id="@+id/btnProfileUpdate"
@@ -71,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/textView6"
@@ -96,6 +96,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileUpdate"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.901" />
 </androidx.constraintlayout.widget.ConstraintLayout>

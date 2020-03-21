@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign up"
-        android:textColor="#E91E63"
+        android:textColor="#FF5722"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +110,7 @@
 
     <EditText
         android:id="@+id/etAge"
-        android:layout_width="322dp"
+        android:layout_width="324dp"
         android:layout_height="47dp"
         android:ems="10"
         android:hint="Enter your age"
@@ -132,5 +132,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.906"
-        app:srcCompat="@drawable/logobaru" />
+        app:srcCompat="@drawable/logooren" />
 </androidx.constraintlayout.widget.ConstraintLayout>
