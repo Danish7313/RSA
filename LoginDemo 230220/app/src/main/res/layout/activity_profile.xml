@@ -20,46 +20,46 @@
 
     <TextView
         android:id="@+id/tvProfileName"
-        android:layout_width="307dp"
+        android:layout_width="371dp"
         android:layout_height="37dp"
         android:text="Name :"
         android:textColor="#FFFFFF"
-        android:textSize="28dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvProfileAge"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.805" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <TextView
         android:id="@+id/tvProfileAge"
-        android:layout_width="306dp"
-        android:layout_height="44dp"
+        android:layout_width="381dp"
+        android:layout_height="55dp"
         android:layout_marginTop="140dp"
         android:text="Age : "
         android:textColor="#FCFFFFFF"
-        android:textSize="28dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <TextView
         android:id="@+id/tvProfileEmail"
-        android:layout_width="306dp"
-        android:layout_height="44dp"
+        android:layout_width="376dp"
+        android:layout_height="50dp"
         android:text="Email :"
         android:textColor="#FFFFFF"
-        android:textSize="28dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileAge"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.165" />
 
     <Button
         android:id="@+id/btnProfileUpdate"
@@ -71,31 +71,31 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintVertical_bias="0.416" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="148dp"
-        android:layout_height="39dp"
-        android:text="User Profile"
+        android:layout_width="230dp"
+        android:layout_height="44dp"
+        android:text="My Profile"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
         android:id="@+id/btnChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ChangePassword"
+        android:text="Change Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintVertical_bias="0.956" />
 </androidx.constraintlayout.widget.ConstraintLayout>
