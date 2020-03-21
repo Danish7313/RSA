@@ -7,22 +7,22 @@
     tools:context=".About">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="390dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/bottom_navigation"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="94dp"
-        android:layout_marginEnd="206dp"
-        android:layout_marginRight="206dp"
-        android:layout_marginBottom="557dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="569dp"
         android:text="welcome to Lequid tech"
-        android:textSize="18sp"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,12 +48,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="133dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="397dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="349dp"
         android:text="CarRush Malaysia is an on-demand car sharing platform that allows you to book a car by the hour or day via the CarRush app. As an alternative to car ownership, we are on a journey to transform the way we think about transportation to make Malaysia greener and smarter." />
 
     <TextView
@@ -164,5 +164,23 @@
         android:layout_marginRight="187dp"
         android:layout_marginBottom="142dp"
         android:text="EMAIL :  aimancns71@gmail.com" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="143dp"
+        android:layout_height="98dp"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        android:layout_marginBottom="492dp"
+        app:srcCompat="@drawable/logooren" />
 
 </RelativeLayout>
