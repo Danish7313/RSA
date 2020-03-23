@@ -39,7 +39,7 @@
         android:layout_marginBottom="216dp"
         android:text="choose car" />
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/carTV"
         android:layout_width="275dp"
         android:layout_height="45dp"
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.038" />
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/timeTV"
         android:layout_width="275dp"
         android:layout_height="45dp"
@@ -83,8 +83,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.053" />
 
-    <EditText
-        android:id="@+id/editText2"
+    <AutoCompleteTextView
+        android:id="@+id/dateTV"
         android:layout_width="275dp"
         android:layout_height="45dp"
         android:layout_alignParentStart="true"
@@ -111,8 +111,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="131dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -122,9 +122,9 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="134dp"
-        android:layout_marginEnd="262dp"
-        android:layout_marginRight="262dp"
-        android:layout_marginBottom="573dp"
+        android:layout_marginEnd="245dp"
+        android:layout_marginRight="245dp"
+        android:layout_marginBottom="555dp"
         android:text="Choose a Car:"
         android:textColor="#FF7C00"
         android:textSize="18sp"
@@ -139,7 +139,7 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -151,7 +151,7 @@
         android:layout_marginTop="452dp"
         android:layout_marginEnd="259dp"
         android:layout_marginRight="259dp"
-        android:layout_marginBottom="255dp"
+        android:layout_marginBottom="241dp"
         android:text="Place Pick Up:"
         android:textColor="#FF7C00"
         android:textSize="18sp"
@@ -160,13 +160,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/dateTV"
         app:layout_constraintVertical_bias="0.118" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="61dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -176,9 +176,9 @@
         android:layout_marginStart="43dp"
         android:layout_marginLeft="43dp"
         android:layout_marginTop="338dp"
-        android:layout_marginEnd="325dp"
-        android:layout_marginRight="325dp"
-        android:layout_marginBottom="369dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginRight="307dp"
+        android:layout_marginBottom="351dp"
         android:text="Date:"
         android:textColor="#FF7C00"
         android:textSize="18sp"
@@ -189,7 +189,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timeTV"
         app:layout_constraintVertical_bias="0.072" />
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/pickupTV"
         android:layout_width="275dp"
         android:layout_height="45dp"
@@ -213,8 +213,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="67dp"
+        android:layout_height="37dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -224,9 +224,9 @@
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
         android:layout_marginTop="237dp"
-        android:layout_marginEnd="324dp"
-        android:layout_marginRight="324dp"
-        android:layout_marginBottom="470dp"
+        android:layout_marginEnd="303dp"
+        android:layout_marginRight="303dp"
+        android:layout_marginBottom="457dp"
         android:text="Time:"
         android:textColor="#FF7C00"
         android:textSize="18sp"
@@ -240,8 +240,8 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="270dp"
-        android:layout_height="49dp"
+        android:layout_width="281dp"
+        android:layout_height="74dp"
         android:layout_above="@+id/bottom_navigation"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -251,15 +251,15 @@
         android:layout_marginStart="37dp"
         android:layout_marginLeft="37dp"
         android:layout_marginTop="38dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginRight="104dp"
-        android:layout_marginBottom="587dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginRight="93dp"
+        android:layout_marginBottom="563dp"
         android:text="BOOKING"
         android:textColor="#FF7C00"
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnsubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
@@ -268,12 +268,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginLeft="149dp"
-        android:layout_marginTop="582dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginRight="174dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginLeft="147dp"
+        android:layout_marginTop="586dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginRight="176dp"
+        android:layout_marginBottom="41dp"
         android:text="submit" />
 
 

@@ -7,40 +7,58 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
 public class DashBoard extends AppCompatActivity {
 
     DatePickerDialog picker;
-    EditText editText2;
+    private EditText dateTV,carTV,pickupTV,timeTV;
+    private Button submit;
+    DatabaseReference databaseReference;
+    Checkout checkout;
 
-    String [] car = {
+   /* String [] car = {
             "Axia",
             "Saga",
             "Civic",
             "toyota",
             "Ferrari",
             "Myvi",
-
-    };
+    }; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        editText2=(EditText) findViewById(R.id.editText2);
-        editText2.setInputType(InputType.TYPE_NULL);
-        editText2.setOnClickListener(new View.OnClickListener() {
+        carTV=(EditText)findViewById(R.id.carTV);
+        timeTV=(EditText)findViewById(R.id.timeTV);
+        dateTV=(EditText)findViewById(R.id.dateTV);
+        pickupTV=(EditText)findViewById(R.id.pickupTV);
+        submit=(Button)findViewById(R.id.btnsubmit);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Checkout");
+
+        dateTV=(EditText)findViewById(R.id.dateTV);
+        dateTV.setInputType(InputType.TYPE_NULL);
+        dateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -52,19 +70,54 @@ public class DashBoard extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                editText2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                dateTV.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String carz = carTV.getText().toString();
+                String timez = timeTV.getText().toString();
+                String datez = dateTV.getText().toString();
+                String pickupz = pickupTV.getText().toString();
+
+                if(!TextUtils.isEmpty(carz) && !TextUtils.isEmpty(timez) && !TextUtils.isEmpty(datez) && !TextUtils.isEmpty(pickupz) ){
+
+                    String id = databaseReference.push().getKey();
+
+                    Checkout checkout = new Checkout(carz,timez,datez,pickupz,id);
+
+                    databaseReference.child(id).setValue(checkout);
+                    Toast.makeText(DashBoard.this, "Sent to database", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(DashBoard.this, RetrieveData.class));
+
+                }
+                else{
+                    Toast.makeText(DashBoard.this,"Please enter",Toast.LENGTH_SHORT).show();
+                }
+
+                /*carTV.setText("");
+                timeTV.setText("");
+                dateTV.setText("");
+                pickupTV.setText("");*/
+
+
+
+            }
+        });
+
+
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, car);
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.carTV);
         textView.setThreshold(1);
-        textView.setAdapter(adapter);
+        textView.setAdapter(adapter); */
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -90,4 +143,5 @@ public class DashBoard extends AppCompatActivity {
             }
         });
         }
+
     }

@@ -204,18 +204,6 @@
         android:textColor="#FF7C00" />
 
     <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="273dp"
-        android:layout_marginRight="273dp"
-        android:layout_marginBottom="361dp"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/textView21"
         android:layout_width="149dp"
         android:layout_height="37dp"
