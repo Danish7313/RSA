@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class RetrieveData extends AppCompatActivity {
 
     private TextView a, b, c, d;
-    DatabaseReference databaseReference,databaseKey;
+    DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     private String newID;
@@ -36,26 +36,10 @@ public class RetrieveData extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-//        databaseKey = FirebaseDatabase.getInstance().getReference("UserKey").child(firebaseAuth.getUid());
-//
-//        databaseKey.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                newID = dataSnapshot.child("id").getValue().toString();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
         databaseReference = firebaseDatabase.getReference("Checkout").child(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //UserSaveKey userSaveKey = dataSnapshot.getValue(UserSaveKey.class);
-                //String uniqueId = userSaveKey.getId();
 
                 String car= dataSnapshot.child("carz").getValue().toString();
                 String time= dataSnapshot.child("timez").getValue().toString();

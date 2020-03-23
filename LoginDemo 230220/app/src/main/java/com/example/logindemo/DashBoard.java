@@ -57,7 +57,6 @@ public class DashBoard extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Checkout");
-        databaseKey = FirebaseDatabase.getInstance().getReference("UserKey").child(firebaseAuth.getUid());
         databaseUser = FirebaseDatabase.getInstance().getReference("UserInfo").child(firebaseAuth.getUid());
 
         dateTV=(EditText)findViewById(R.id.dateTV);
@@ -95,11 +94,8 @@ public class DashBoard extends AppCompatActivity {
 
                     Checkout checkout = new Checkout(carz,timez,datez,pickupz,id);
 
-                    //databaseReference.child(id).setValue(checkout);
                     databaseReference.child(firebaseAuth.getUid()).setValue(checkout);
 
-                    UserSaveKey userSaveKey = new UserSaveKey(id);
-                    databaseKey.setValue(userSaveKey);
 
                     Toast.makeText(DashBoard.this, "Sent to database", Toast.LENGTH_SHORT).show();
 
@@ -109,13 +105,6 @@ public class DashBoard extends AppCompatActivity {
                 else{
                     Toast.makeText(DashBoard.this,"Please enter",Toast.LENGTH_SHORT).show();
                 }
-
-                /*carTV.setText("");
-                timeTV.setText("");
-                dateTV.setText("");
-                pickupTV.setText("");*/
-
-
 
             }
         });
