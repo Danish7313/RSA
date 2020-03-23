@@ -95,7 +95,8 @@ public class DashBoard extends AppCompatActivity {
 
                     Checkout checkout = new Checkout(carz,timez,datez,pickupz,id);
 
-                    databaseReference.child(id).setValue(checkout);
+                    //databaseReference.child(id).setValue(checkout);
+                    databaseReference.child(firebaseAuth.getUid()).setValue(checkout);
 
                     UserSaveKey userSaveKey = new UserSaveKey(id);
                     databaseKey.setValue(userSaveKey);
