@@ -31,7 +31,8 @@ public class DashBoard extends AppCompatActivity {
     DatePickerDialog picker;
     private EditText dateTV,carTV,pickupTV,timeTV;
     private Button submit;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseKey, databaseUser;
+    private FirebaseAuth firebaseAuth;
     Checkout checkout;
 
    /* String [] car = {
@@ -54,7 +55,10 @@ public class DashBoard extends AppCompatActivity {
         pickupTV=(EditText)findViewById(R.id.pickupTV);
         submit=(Button)findViewById(R.id.btnsubmit);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Checkout");
+        databaseKey = FirebaseDatabase.getInstance().getReference("UserKey").child(firebaseAuth.getUid());
+        databaseUser = FirebaseDatabase.getInstance().getReference("UserInfo").child(firebaseAuth.getUid());
 
         dateTV=(EditText)findViewById(R.id.dateTV);
         dateTV.setInputType(InputType.TYPE_NULL);
@@ -92,6 +96,10 @@ public class DashBoard extends AppCompatActivity {
                     Checkout checkout = new Checkout(carz,timez,datez,pickupz,id);
 
                     databaseReference.child(id).setValue(checkout);
+
+                    UserSaveKey userSaveKey = new UserSaveKey(id);
+                    databaseKey.setValue(userSaveKey);
+
                     Toast.makeText(DashBoard.this, "Sent to database", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(DashBoard.this, RetrieveData.class));
@@ -142,6 +150,6 @@ public class DashBoard extends AppCompatActivity {
 
             }
         });
-        }
-
     }
+
+}

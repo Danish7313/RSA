@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class RetrieveData extends AppCompatActivity {
 
     private TextView a, b, c, d;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,databaseKey;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
 
@@ -35,15 +35,19 @@ public class RetrieveData extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference("Checkout");
+        databaseKey = FirebaseDatabase.getInstance().getReference("UserKey").child(firebaseAuth.getUid());
+
+        databaseReference = firebaseDatabase.getReference().child("Checkout");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserSaveKey userSaveKey = dataSnapshot.getValue(UserSaveKey.class);
+                String uniqueId = userSaveKey.getId();
 
-                String car= dataSnapshot.child("carz").getValue().toString();
-                String time= dataSnapshot.child("timez").getValue().toString();
-                String date= dataSnapshot.child("datez").getValue().toString();
-                String pickup= dataSnapshot.child("pickupz").getValue().toString();
+                String car= dataSnapshot.child(uniqueId).child("carz").getValue().toString();
+                String time= dataSnapshot.child(uniqueId).child("timez").getValue().toString();
+                String date= dataSnapshot.child(uniqueId).child("datez").getValue().toString();
+                String pickup= dataSnapshot.child(uniqueId).child("pickupz").getValue().toString();
                 a.setText("Car : " + car);
                 b.setText("Time : " + time);
                 c.setText("Date : " + date);
