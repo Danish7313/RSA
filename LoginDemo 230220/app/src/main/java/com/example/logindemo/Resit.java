@@ -20,6 +20,12 @@ public class Resit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resit);
 
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        TextView textViewDate = findViewById(R.id.text_view_date);
+        textViewDate.setText(currentDate);
+
         button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,12 +33,6 @@ public class Resit extends AppCompatActivity {
                 openSecondActivity();
             }
         });
-
-        Calendar calender = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calender.getTime());
-
-        TextView textViewDate = findViewById(R.id.text_view_date);
-        textViewDate.setText(currentDate);
     }
 
     public void openSecondActivity() {

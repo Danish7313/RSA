@@ -8,6 +8,21 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tvbtp"
+        android:layout_width="332dp"
+        android:layout_height="56dp"
+        android:text="Total Price : RM"
+        android:textColor="#FF7C00"
+        android:textSize="24sp"
+        android:textStyle="normal|bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/btnconfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvbt"
+        app:layout_constraintVertical_bias="0.88" />
+
+    <TextView
         android:id="@+id/textView26"
         android:layout_width="369dp"
         android:layout_height="74dp"
@@ -100,7 +115,7 @@
         app:layout_constraintVertical_bias="0.647" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btncancel"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:background="#D81630"

@@ -29,31 +29,43 @@ import java.util.Calendar;
 public class DashBoard extends AppCompatActivity {
 
     DatePickerDialog picker;
-    private EditText dateTV,carTV,pickupTV,timeTV;
+    private EditText dateTV,carTV,pickupTV,timeTV,durTV;
     private Button submit;
     DatabaseReference databaseReference, databaseKey, databaseUser;
     private FirebaseAuth firebaseAuth;
     Checkout checkout;
 
-   /* String [] car = {
+    String [] car = {
             "Axia",
             "Saga",
             "Civic",
-            "toyota",
+            "Aruz",
             "Ferrari",
             "Myvi",
-    }; */
+    };
+
+    Integer [] dur = {
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            24,
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        carTV=(EditText)findViewById(R.id.carTV);
+        carTV=(AutoCompleteTextView)findViewById(R.id.carTV);
         timeTV=(EditText)findViewById(R.id.timeTV);
         dateTV=(EditText)findViewById(R.id.dateTV);
         pickupTV=(EditText)findViewById(R.id.pickupTV);
+        durTV=(EditText)findViewById(R.id.durTV);
         submit=(Button)findViewById(R.id.btnsubmit);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Checkout");
@@ -87,12 +99,13 @@ public class DashBoard extends AppCompatActivity {
                 String timez = timeTV.getText().toString();
                 String datez = dateTV.getText().toString();
                 String pickupz = pickupTV.getText().toString();
+                String duration = durTV.getText().toString();
 
                 if(!TextUtils.isEmpty(carz) && !TextUtils.isEmpty(timez) && !TextUtils.isEmpty(datez) && !TextUtils.isEmpty(pickupz) ){
 
                     String id = databaseReference.push().getKey();
 
-                    Checkout checkout = new Checkout(carz,timez,datez,pickupz,id);
+                    Checkout checkout = new Checkout(carz,timez,datez,pickupz,id,duration);
 
                     databaseReference.child(firebaseAuth.getUid()).setValue(checkout);
 
@@ -110,12 +123,11 @@ public class DashBoard extends AppCompatActivity {
         });
 
 
-       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, car);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                findViewById(R.id.carTV);
+       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, car);
+        AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.carTV);
         textView.setThreshold(1);
-        textView.setAdapter(adapter); */
+        textView.setAdapter(adapter);
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 

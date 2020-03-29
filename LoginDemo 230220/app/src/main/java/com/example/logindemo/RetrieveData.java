@@ -19,12 +19,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RetrieveData extends AppCompatActivity {
 
-    private TextView a, b, c, d;
+    private TextView a, b, c, d,totalPrice;
     DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     private String newID;
-    private Button button;
+    private Button btnconfirm,btncancel;
+    double HargaTotal;
 
 
     @Override
@@ -32,11 +33,20 @@ public class RetrieveData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_data);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        btnconfirm = (Button)findViewById(R.id.btnconfirm);
+        btncancel = (Button) findViewById(R.id.btncancel);
+
+        btnconfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDashBoard();
+                startActivity(new Intent(RetrieveData.this, Resit.class));
+            }
+        });
+
+        btncancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RetrieveData.this, DashBoard.class));
             }
         });
 
@@ -44,23 +54,42 @@ public class RetrieveData extends AppCompatActivity {
         b = findViewById(R.id.tvbt);
         c = findViewById(R.id.tvbd);
         d = findViewById(R.id.tvbp);
+        totalPrice = findViewById(R.id.tvbtp);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         databaseReference = firebaseDatabase.getReference("Checkout").child(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String car= dataSnapshot.child("carz").getValue().toString();
-                String time= dataSnapshot.child("timez").getValue().toString();
-                String date= dataSnapshot.child("datez").getValue().toString();
-                String pickup= dataSnapshot.child("pickupz").getValue().toString();
+                String car = dataSnapshot.child("carz").getValue().toString();
+                String time = dataSnapshot.child("timez").getValue().toString();
+                String date = dataSnapshot.child("datez").getValue().toString();
+                String pickup = dataSnapshot.child("pickupz").getValue().toString();
+                Integer durationz = Integer.valueOf(dataSnapshot.child("durationz").getValue().toString());
                 a.setText("Car : " + car);
                 b.setText("Time : " + time);
                 c.setText("Date : " + date);
                 d.setText("Pick Up Place : " + pickup);
+                totalPrice.setText("Total Price : RM " + durationz);
+
+
+
+                if (car.equals("Saga")) {
+                    HargaTotal = 10.00 * durationz;
+                } else if (car.equals("Axia")) {
+                    HargaTotal = 9.00 * durationz;
+                } else if (car.equals("Aruz")) {
+                    HargaTotal = 12.00 * durationz;
+                } else if (car.equals("Civic")) {
+                    HargaTotal = 15.00 * durationz;
+                } else if (car.equals("Ferrari")) {
+                    HargaTotal = 50.00 * durationz;
+                } else if (car.equals("Myvi")) {
+                    HargaTotal = 8.00 * durationz;
+                }
+
+                totalPrice.setText("Total : RM " + String.format("%.2f", HargaTotal));
             }
 
             @Override
@@ -69,10 +98,6 @@ public class RetrieveData extends AppCompatActivity {
 
             }
         });
-    }
-    public void openDashBoard(){
-        Intent intent = new Intent(this, DashBoard.class);
-        startActivity(intent);
     }
 }
 

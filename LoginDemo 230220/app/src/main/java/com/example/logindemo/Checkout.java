@@ -6,17 +6,19 @@ public class Checkout {
     private String Timez;
     private String Datez;
     private String Pickupz;
+    private String Durationz;
 
     public Checkout() {
 
     }
 
-    public Checkout(String carz, String timez, String datez, String pickupz , String bookid) {
+    public Checkout(String carz, String timez, String datez, String pickupz , String bookid , String durationz) {
         Carz = carz;
         Timez = timez;
         Datez = datez;
         Pickupz = pickupz;
         Bookid = bookid;
+        Durationz = durationz;
     }
 
     public void setBookid(String bookid) {
@@ -39,6 +41,10 @@ public class Checkout {
         Pickupz = pickupz;
     }
 
+    public void setDuration(String durationz) {
+        Durationz = durationz;
+    }
+
     public String getPickupz() {
         return Pickupz;
     }
@@ -59,4 +65,5 @@ public class Checkout {
         return Carz;
     }
 
+    public String getDurationz() { return Durationz; }
 }
