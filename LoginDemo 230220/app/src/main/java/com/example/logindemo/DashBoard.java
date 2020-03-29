@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,6 +36,10 @@ public class DashBoard extends AppCompatActivity {
     DatabaseReference databaseReference, databaseKey, databaseUser;
     private FirebaseAuth firebaseAuth;
     Checkout checkout;
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour, currentMinute;
+    String amPm;
 
     String [] car = {
             "Axia",
@@ -45,10 +51,15 @@ public class DashBoard extends AppCompatActivity {
     };
 
     Integer [] dur = {
+            1,
             2,
+            3,
             4,
+            5,
             6,
+            7,
             8,
+            9,
             10,
             12,
             24,
@@ -92,6 +103,29 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
+        timeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(DashBoard.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        timeTV.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+                    }
+                }, currentHour, currentMinute, false);
+
+                timePickerDialog.show();
+            }
+        });
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +161,11 @@ public class DashBoard extends AppCompatActivity {
         AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.carTV);
         textView.setThreshold(1);
         textView.setAdapter(adapter);
+
+        ArrayAdapter<Integer> adapter2 = new ArrayAdapter<Integer>(this, android.R.layout.simple_dropdown_item_1line, dur);
+        AutoCompleteTextView textView2 = (AutoCompleteTextView)findViewById(R.id.durTV);
+        textView2.setThreshold(1);
+        textView2.setAdapter(adapter2);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
